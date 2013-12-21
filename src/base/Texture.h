@@ -19,12 +19,16 @@ class Texture {
 private:
 	SDL_Texture * texture;
 	SDL_Rect * srcRect;
+	SDL_Renderer * renderer;
+
+	void loadTextureInfo(int x = 0, int y = 0, int w = -1, int h = -1);
 public:
 	Texture(const string &file, SDL_Renderer * renderer);
 	Texture(const string &file, SDL_Renderer * renderer, int x, int y);
 	Texture(const string &file, SDL_Renderer * renderer, int x, int y, int w, int h);
 	virtual ~Texture();
-	void paint(SDL_Renderer * render);
+	void paint(int x, int y);
+	void paint(int x, int y, int w, int h);
 };
 
 } /* namespace sge_base */
