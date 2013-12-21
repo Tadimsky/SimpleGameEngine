@@ -4,6 +4,7 @@
 *.o
 Debug/*
 Debug
+**/Debug/
 
 # Compiled Dynamic libraries
 *.so
