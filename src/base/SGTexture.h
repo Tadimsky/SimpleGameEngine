@@ -15,7 +15,7 @@ using namespace std;
 
 namespace sge_base {
 
-class Texture {
+class SGTexture {
 private:
 	SDL_Texture * texture;
 	SDL_Rect * srcRect;
@@ -23,10 +23,10 @@ private:
 
 	void loadTextureInfo(int x = 0, int y = 0, int w = -1, int h = -1);
 public:
-	Texture(const string &file, SDL_Renderer * renderer);
-	Texture(const string &file, SDL_Renderer * renderer, int x, int y);
-	Texture(const string &file, SDL_Renderer * renderer, int x, int y, int w, int h);
-	virtual ~Texture();
+	SGTexture(const string &file, SDL_Renderer * renderer);
+	SGTexture(const string &file, SDL_Renderer * renderer, int x, int y);
+	SGTexture(const string &file, SDL_Renderer * renderer, int x, int y, int w, int h);
+	virtual ~SGTexture();
 	void paint(int x, int y);
 	void paint(int x, int y, int w, int h);
 };

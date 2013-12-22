@@ -5,7 +5,7 @@
  *      Author: jonno
  */
 
-#include "Texture.h"
+#include "SGTexture.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "SGEngine.h"
@@ -14,7 +14,7 @@ using namespace std;
 namespace sge_base {
 
 
-void Texture::loadTextureInfo(int x, int y, int w, int h) {
+void SGTexture::loadTextureInfo(int x, int y, int w, int h) {
 	if (w < 0 && h < 0) {
 		SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 	}
@@ -25,7 +25,7 @@ void Texture::loadTextureInfo(int x, int y, int w, int h) {
 	this->srcRect->y = y;
 }
 
-Texture::Texture(const string &file, SDL_Renderer * renderer) {
+SGTexture::SGTexture(const string &file, SDL_Renderer * renderer) {
 	this->renderer = renderer;
 	this->texture = IMG_LoadTexture(renderer, file.c_str());
 	if (texture == nullptr) {
@@ -33,22 +33,22 @@ Texture::Texture(const string &file, SDL_Renderer * renderer) {
 	}
 	loadTextureInfo();
 }
-Texture::Texture(const string &file, SDL_Renderer * renderer, int x, int y) : Texture(file, renderer){
+SGTexture::SGTexture(const string &file, SDL_Renderer * renderer, int x, int y) : SGTexture(file, renderer){
 	loadTextureInfo(x, y);
 }
-Texture::Texture(const string &file, SDL_Renderer * renderer, int x, int y, int w, int h) : Texture(file, renderer) {
+SGTexture::SGTexture(const string &file, SDL_Renderer * renderer, int x, int y, int w, int h) : SGTexture(file, renderer) {
 	loadTextureInfo(x, y, w, h);
 }
 
-Texture::~Texture() {
+SGTexture::~SGTexture() {
 	SDL_DestroyTexture(this->texture);
 }
 
-void Texture::paint(int x, int y) {
+void SGTexture::paint(int x, int y) {
 	paint(x, y, srcRect->w, srcRect->h);
 }
 
-void Texture::paint(int x, int y, int w, int h) {
+void SGTexture::paint(int x, int y, int w, int h) {
 	SDL_Rect dst;
 	dst.x = x;
 	dst.y = y;
