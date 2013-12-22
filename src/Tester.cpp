@@ -6,25 +6,18 @@
  */
 
 #include <iostream>
-#include "base/Texture.h"
+#include "base/SGTexture.h"
 #include "base/SGEngine.h"
+#include "MyEngine.h"
 
 using namespace sge_base;
 using namespace std;
 
 int main () {
-	SGEngine * g = new SGEngine("Yolomir", 640, 480);
-	SGEngine lolz = *g;
-	Texture * img = new Texture("image.bmp" , (g->renderer));
+	MyEngine * g = new MyEngine();
 
-	int x = 0, y = 0;
-	while (true) {
-		g->clearScreen();
-		img->paint(x, y);
-		g->renderScreen();
-		x++;
-		y++;
-	}
+	g->runGame();
+
  	cout << "LOLZ" << endl;
 	return 0;
 }
