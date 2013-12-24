@@ -11,7 +11,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include "../SGRenderable.h"
+#include "../core/SGRenderable.h"
 
 
 namespace sge_base {

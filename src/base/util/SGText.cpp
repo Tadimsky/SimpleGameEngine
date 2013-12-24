@@ -16,12 +16,13 @@ namespace sge_base {
 
 SGText::SGText(SDL_Renderer* renderer) : SGRenderable(renderer) {
 	this->position = new SDL_Point();
-	//this->setFont("lol");
+	this->font = NULL;
 	this->color = new SDL_Color;
 	*color = { 255, 255, 255};
 }
 
 SGText::~SGText() {
+	TTF_CloseFont(this->font);
 }
 
 void SGText::setColor(SDL_Color* c) {
@@ -41,7 +42,7 @@ void SGText::setFont(const string &name, int size) {
 }
 
 void SGText::clear() {
-	this->setText("");
+	this->texture = NULL;
 }
 
 void SGText::setText(const std::string& text) {
@@ -49,9 +50,12 @@ void SGText::setText(const std::string& text) {
 }
 
 void SGText::setText(const std::string& text, int x, int y) {
+	if (this->font == nullptr) {
+		return;
+	}
 	(*(this->position)).x = x;
 	(*(this->position)).y = y;
-	SDL_Surface * surf = TTF_RenderText_Solid(this->font, text.c_str(), *(this->color));
+	SDL_Surface * surf = TTF_RenderText_Blended(this->font, text.c_str(), *(this->color));
 	if (surf == nullptr) {
 		//
 	}
