@@ -8,7 +8,7 @@
 #include "SGTexture.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "SGEngine.h"
+#include "../SGEngine.h"
 
 using namespace std;
 namespace sge_base {
