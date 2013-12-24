@@ -14,6 +14,7 @@
 #include <SDL2/SDL_image.h>
 #include <thread>
 #include "util/SGTimer.h"
+#include "util/SGText.h"
 
 using namespace std;
 namespace sge_base {
@@ -23,6 +24,9 @@ private:
 	SDL_Window * window;
 
 	SGTimer frameCounter;
+	SGText * fpsCounter;
+
+	double myFPS;
 
 	bool quit;
 

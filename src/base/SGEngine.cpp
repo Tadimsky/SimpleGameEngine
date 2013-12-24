@@ -8,8 +8,10 @@
 #include "SGEngine.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <thread>
+#include <sstream>
 
 namespace sge_base {
 
@@ -35,7 +37,15 @@ SGEngine::SGEngine(const string& wndtext, int width, int height) {
 		logSDLError(cout, "IMG_Init");
 		return;
 	}
+
+	if (TTF_Init() == -1) {
+		logSDLError(cout, "TTF_Init");
+		return;
+	}
 	frameCounter = SGTimer();
+	fpsCounter =  new SGText(this->renderer);
+	fpsCounter->setFont("coolvetica rg.ttf", 14);
+	myFPS = 0;
 }
 
 SGEngine::~SGEngine() {
@@ -43,6 +53,7 @@ SGEngine::~SGEngine() {
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	IMG_Quit();
+	TTF_Quit();
 }
 
 void SGEngine::clearScreen() {
@@ -82,15 +93,23 @@ void SGEngine::gameLoop() {
 		// thread this out?
 		this->processInput();
 		this->update();
-		cout << "\t Time to update: " << frameCounter.getTime() << endl;
+		//cout << "\t Time to update: " << frameCounter.getTime() << endl;
 
 
-		Uint32 gameTime = frameCounter.getTime();
+		Uint64 gameTime = frameCounter.getTime();
 		this->clearScreen();
 		this->paint();
+
+		std::stringstream f;
+		f << "FPS: " << myFPS;
+		this->fpsCounter->setText(f.str());
+		this->fpsCounter->paint();
+
 		this->renderScreen();
-		cout << "\t Time to paint: " << frameCounter.getTime() - gameTime << endl;
-		cout << "Total Frame: " << frameCounter.getTime() << endl;
+		//cout << "\t Time to paint: " << frameCounter.getTime() - gameTime << endl;
+		//cout << "Total Frame: " << frameCounter.getTime() << endl;
+
+		myFPS = frameCounter.getTime() > 0 ? 1000 / frameCounter.getTime() : 0;
  	}
 }
 
