@@ -10,6 +10,7 @@
 
 #include "base/SGEngine.h"
 #include "base/SGTexture.h"
+#include "base/util/SGText.h"
 
 namespace sge_base {
 
@@ -17,6 +18,7 @@ class MyEngine: public SGEngine {
 
 private:
 	SGTexture * img;
+	SGText * text;
 
 public:
 	MyEngine();
