@@ -13,7 +13,7 @@ namespace sge_base {
 SGTimer::SGTimer() {
 	isStarted = false;
 	isRunning = false;
-	startTime = SDL_GetTicks();
+	startTime = SDL_GetPerformanceCounter();
 }
 
 SGTimer::~SGTimer() {
@@ -21,7 +21,7 @@ SGTimer::~SGTimer() {
 
 void SGTimer::start() {
 	if (!isStarted) {
-		startTime =  SDL_GetTicks();
+		startTime =  SDL_GetPerformanceCounter();
 		isStarted = true;
 		isRunning =  true;
 	}
@@ -39,9 +39,12 @@ void SGTimer::stop() {
 	}
 }
 
-Uint32 SGTimer::getTime() {
+double SGTimer::getTime() {
 	if (isStarted && isRunning) {
-		return SDL_GetTicks() - startTime;
+		double fps = SDL_GetPerformanceCounter() - startTime;
+		fps *= 1000;
+		fps /= (double)SDL_GetPerformanceFrequency();
+		return fps;
 	}
 	return 0;
 }

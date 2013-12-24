@@ -14,7 +14,7 @@ namespace sge_base {
 
 class SGTimer {
 private:
-	Uint32 startTime;
+	Uint64 startTime;
 	bool isStarted;
 	bool isRunning;
 public:
@@ -25,7 +25,7 @@ public:
 	void stop();
 	void restart();
 
-	Uint32 getTime();
+	double getTime();
 };
 
 } /* namespace sge_base */
