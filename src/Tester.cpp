@@ -6,8 +6,6 @@
  */
 
 #include <iostream>
-#include "base/SGTexture.h"
-#include "base/SGEngine.h"
 #include "MyEngine.h"
 
 using namespace sge_base;
@@ -18,6 +16,8 @@ int main () {
 
 	g->runGame();
 
+
+	delete g;
  	cout << "LOLZ" << endl;
 	return 0;
 }

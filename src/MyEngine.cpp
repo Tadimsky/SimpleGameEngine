@@ -6,7 +6,7 @@
  */
 
 #include "MyEngine.h"
-#include "base/SGTexture.h"
+#include "base/core/SGTexture.h"
 #include "base/util/SGText.h"
 
 namespace sge_base {
@@ -16,12 +16,10 @@ int x = 0, y = 0;
 
 
 MyEngine::MyEngine() : SGEngine("Lolol", 640, 480) {
-	// TODO Auto-generated constructor stub
-
 	img = new SGTexture("image.bmp" , this->renderer );
 	text = new SGText(this->renderer);
-	this->text->setFont("Moon Flower.ttf");
-	this->text->setText("LOOOL");
+	this->text->setFont("Moon Flower.ttf", 72);
+	this->text->setText("LOOOL", 100, 100);
 }
 
 MyEngine::~MyEngine() {
@@ -30,6 +28,7 @@ MyEngine::~MyEngine() {
 
 void MyEngine::paint() {
 	this->img->paint(x,y);
+	this->text->paint();
 }
 
 void MyEngine::update() {

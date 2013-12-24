@@ -9,7 +9,7 @@
 #define MYENGINE_H_
 
 #include "base/SGEngine.h"
-#include "base/SGTexture.h"
+#include "base/core/SGTexture.h"
 #include "base/util/SGText.h"
 
 namespace sge_base {
