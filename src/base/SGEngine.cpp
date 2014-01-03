@@ -82,6 +82,10 @@ void SGEngine::processInput() {
 	}
 }
 
+double SGEngine::getFrameTime() {
+	return 1000 / myFPS;
+}
+
 void SGEngine::logSDLError(ostream &os, const string &msg) {
 	os << msg << " : " << SDL_GetError() << endl;
 }
@@ -93,7 +97,7 @@ void SGEngine::gameLoop() {
 		// thread this out?
 		this->processInput();
 		this->update();
-		//cout << "\t Time to update: " << frameCounter.getTime() << endl;
+		cout << "\t Time to update: " << frameCounter.getTime() << endl;
 
 
 		Uint64 gameTime = frameCounter.getTime();
@@ -106,8 +110,8 @@ void SGEngine::gameLoop() {
 		this->fpsCounter->paint();
 
 		this->renderScreen();
-		//cout << "\t Time to paint: " << frameCounter.getTime() - gameTime << endl;
-		//cout << "Total Frame: " << frameCounter.getTime() << endl;
+		cout << "\t Time to paint: " << frameCounter.getTime() - gameTime << endl;
+		cout << "Total Frame: " << frameCounter.getTime() << endl;
 
 		myFPS = frameCounter.getTime() > 0 ? 1000 / frameCounter.getTime() : 0;
  	}

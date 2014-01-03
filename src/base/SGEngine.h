@@ -61,6 +61,8 @@ public:
 	void runGame();
 	void stopGame();
 
+	double getFrameTime();
+
 	static void logSDLError(ostream &os, const string &msg);
 };
 
