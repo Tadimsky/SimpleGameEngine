@@ -26,6 +26,8 @@ public:
 
 	virtual void paint(int x, int y);
 	virtual void paint(int x, int y, int w, int h);
+
+	SDL_Rect getRectangle();
 };
 
 } /* namespace sge_base */

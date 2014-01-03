@@ -49,4 +49,8 @@ void SGRenderable::paint(int x, int y, int w, int h) {
 	SDL_RenderCopy(this->renderer, this->texture, NULL, &dst);
 }
 
+SDL_Rect SGRenderable::getRectangle() {
+	return *srcRect;
+}
+
 } /* namespace sge_base */
